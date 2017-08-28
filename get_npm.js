@@ -41,13 +41,18 @@ if (binType === 'iojs') {
     downloadNpmZip(npmVersion);
   });
 } else {
-  var pkgUri = util.format(NPM_PKG_JSON_URL, 'joyent/node',
-    binVersion === 'latest' ? 'master' : binVersion);
-  wget(pkgUri, function (filename, pkg) {
+  var pkgUri = "https://npm.taobao.org/mirrors/node/index.json";
+  wget(pkgUri, function (filename, content) {
     if (filename === null) {
       return noNpmAndExit();
     }
-    downloadNpmZip(JSON.parse(pkg).version);
+    var _pkg = JSON.parse(content);
+	for (var i = 0,n = _pkg.length; i < n; i++) {
+		var obj = _pkg[i];
+		if (obj.version == binVersion) {
+			downloadNpmZip(obj.npm);
+		}
+	}
   });
 }
 
