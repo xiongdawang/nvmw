@@ -1,3 +1,5 @@
+修复国内使用nvmw下载node失败的问题
+
 **SORRY, nvmw is no longer maintained. If someone wants to keep maintained, contact me by [email](mailto://hakobera@gmail.com) or [twitter](https://twitter.com/hakobera).**
 
 Node Version Manager for Windows
